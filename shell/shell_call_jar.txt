@@ -1,0 +1,14 @@
+1 Shell调用并获取执行jar包后的返回值
+java -jar app.jar "args" | tail -1 
+
+2 如果想要返回JVM退出时的状态，也是未尝不可。众所周知，因为程序执行完毕，正常退出返回0，非0的返回都是非正常退出。所以java代码也可以这么写。
+
+public class Test {
+    public static void main(String[] args) {
+        System.exit(4);
+    }
+}
+
+java -jar test.jar
+echo $?
+
