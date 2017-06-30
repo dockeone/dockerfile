@@ -20,8 +20,24 @@ sed命令行格式为：
 
  删除匹配行
 
-      sed -i '/匹配字符串/d'  filename  （注：若匹配字符串是变量，则需要“”，而不是‘’。记得好像是）
+      sed -i '/匹配字符串/d'  filename1  filename2 （注：若匹配字符串是变量，则需要“”，而不是‘’。记得好像是）
 
  替换匹配行中的某个字符串
 
-      sed -i '/匹配字符串/s/替换源字符串/替换目标字符串/g' filename
+      sed -i '/匹配字符串/a  testtest'  filename1  filename2 在匹配字符串后添加字符串
+
+      sed -i '/匹配字符串/s/替换源字符串/替换目标字符串/g' filename1  filename2 
+
+
+      sed -i 's/替换源字符串/替换目标字符串/2' filename1  filename2  可以在结尾指定数字，表示替换第2次匹配的字符串
+加入配置文件中test中配置项
+key1=value1项修改为key1=newValue
+有两种方案：
+1.先删后加
+  sed -i "/^key1=*/d" test
+  sed -i "/^key2=*/a key1=newValue"  ---注意此处要选择一个参照物，在此之前或者之后插入
+2.直接替换 --注意是双引号
+   sed -i "/^key1=*/s/=.*/=newValue/"  test
+
+	  
+	  

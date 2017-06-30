@@ -1,4 +1,6 @@
 1 Shell调用并获取执行jar包后的返回值
+http://www.cnblogs.com/dzblog/p/6914146.html
+java中通过  System.out.println(URL);返回结果，子进程和父进程会共享文件输入输出流
 java -jar app.jar "args" | tail -1 
 
 2 如果想要返回JVM退出时的状态，也是未尝不可。众所周知，因为程序执行完毕，正常退出返回0，非0的返回都是非正常退出。所以java代码也可以这么写。
@@ -11,4 +13,10 @@ public class Test {
 
 java -jar test.jar
 echo $?
+
+3 Shell中调用java时的参数
+temp_file=/var/tmp/temp$$_file
+ava -cp $CLASS_PATH  mainClass“$arg1”  “$filePath”  “$arg2” “$arg3”  >  $temp_file
+
+typeset result=cat $temp_file
 
