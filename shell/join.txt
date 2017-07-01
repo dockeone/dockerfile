@@ -1,0 +1,10 @@
+”Ô∑®£∫
+join  option  file1 file2
+
+-1  field1
+
+-2  field2
+
+-o
+
+-t 

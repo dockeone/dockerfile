@@ -1,0 +1,50 @@
+命令格式：
+awk  pattern action   file1  file2
+
+awk读取输入记录，然后自动将各个记录分为字段，awk将每条记录内的字段数目，存储到内建变量NF。
+
+1， awk -F: '{print $1, $5}'  /etc/passwd
+
+FS:默认为空格，可指定-F参数指定输入分隔符
+OFS：默认为空格，可以使用OFS指定输出字段分割符
+
+2. awk     -F:  -v 'OFS=**'  '{print $1, $5}'  /etc/passwd
+命令行里使用-v选项，会设置awk的变量。
+
+3.BEGIN. END
+awk  'BEGIN {FS=":" ; OFS="**"} {print $1, $5}'  /etc/passwd  
+
+
+4.用awk实现替换文件里面的内容。
+文件是这样，有ID和具体信息，ID行以@开头，后面的信息有空格，把第一个空格后的全部内容替换为空格前的字符。
+
+用AWK来实现。
+@AA10 P 7 #
+YYYYYYYYYYYYYYYYYY
+ZZZZZZZZZZZZZZZZZ
+@AQ9 TT 7 tt
+XXXXXXXXXXXXXXXXX
+WWWWWWWWWWWW
+
+ 
+
+得到：
+
+@AA10 @AA10
+YYYYYYYYYYYYYYYYYY
+ZZZZZZZZZZZZZZZZZ
+@AQ9 @AQ9
+XXXXXXXXXXXXXXXXX
+WWWWWWWWWWWW
+
+
+1. awk '/^@/{print $1,$1;next} {print $0}  file
+或者
+2： awk '{if ($1~"@"){print $1,$1}else{print $0}}' file
+
+
+5.Linux-awk直接修改原文件
+#注意:重定向符号后面的文件名需要加双引号
+awk '{print > "file"}' file
+
+
