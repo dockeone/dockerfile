@@ -1,0 +1,4 @@
+查看打开指定端口的进程
+lsof -t -i:port
+
+kill `lsof -t -i:port`
