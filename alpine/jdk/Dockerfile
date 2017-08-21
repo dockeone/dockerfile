@@ -15,7 +15,7 @@ RUN addgroup -S universe \
 USER pc
 WORKDIR /home/pc
 	
-RUN apk --no-cache  add --update curl bash 
+RUN apk   add --update --no-cache curl bash  grep coreutils  mksh sed  gawk
 
 
 EXPOSE 8080
