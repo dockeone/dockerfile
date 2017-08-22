@@ -9,6 +9,10 @@ RUN apk add --update tzdata && \
     echo $TZ > /etc/timezone  && \
     rm -rf /var/cache/apk/*
 
+##添加用户组###
+RUN apk add --update 	--no-cache shadow \
+ && usermod -aG  root cube
+	
 RUN addgroup -S universe \
     && adduser -D -S  -h /home/pc -s /bin/sh  -G universe pc \
 	&& apk add --no-cache --update libstdc++
