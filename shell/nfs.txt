@@ -1,0 +1,28 @@
+1. 依赖 rpc
+
+nfs服务器搭建
+1)rpm -ivh nfs-kernel-server portmap
+
+2)配置共享目录
+vim /etc/exports
+/home/share  *(rw,sync)
+3）启动nfs server
+service nfs restart 或者service nfsserver st
+
+动态重新加载nfs配置
+exportfs命令
+exportfs 
+  -a
+  -r  重新mount 目录
+  -u  UNmount目录
+  -v  输出详细信息
+
+nfs客户端
+1) 安装服务端或者nfs-client包都行
+2)启动服务端或者客户端
+3）挂载nfsserver 共享目录
+ mount -t nfs IP:/home/share   /mnt
+ umount /mnt
+
+配置自动挂载
+/etc/fstab
